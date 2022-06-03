@@ -1,4 +1,5 @@
 import 'package:findlr/data/repository/popular_products_repo.dart';
+import 'package:findlr/models/product_models.dart';
 import 'package:get/get.dart';
 
 class PopularProductController extends GetxController{
@@ -12,7 +13,7 @@ class PopularProductController extends GetxController{
    Response response = await popularProductRepo.getPopularProductList();
    if(response.statusCode==200){
      _popularProductList=[];
-     //_popularProductList.addAll();
+     _popularProductList.addAll(ProductModel.fromJson(response.body).products);
      update();
    }
   }
